@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UnitTestBankAccount {
-
+    // เช็คว่าฝากถอนเงินถูกมั้ย
     BankAccount account;
     int initialBalance = 100;
 

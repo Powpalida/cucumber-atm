@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StepDefATM {
-
+    //test ทุกอย่างพร้อมกัน เป็น end-to-end testing (Acceptance Testing)
     ATM atm;
     Bank bank;
     boolean validLogin;
@@ -19,11 +19,12 @@ public class StepDefATM {
         atm = new ATM(bank);
     }
 
+    //add new customer เข้าใน bank
     @Given("a customer with id {int} and pin {int} exists")
     public void a_customer_with_id_and_pin_exists(int id, int pin) {
         bank.addCustomer(new Customer(id, pin));
     }
-
+    //ระบุ balance
     @Given("a customer with id {int} and pin {int} with balance {float} exists")
     public void a_customer_with_id_and_pin_with_balance_exists(int id, int pin, double balance) {
         bank.addCustomer(new Customer(id, pin, balance));
@@ -42,6 +43,16 @@ public class StepDefATM {
     @Then("I cannot login")
     public void i_cannot_login() {
         assertFalse(validLogin);
+    }
+
+    @When("I deposit {float} from ATM")
+    public void i_deposit_from_atm(double amount){
+        atm.deposit(amount);
+    }
+
+    @Then("my account balance is {float}")
+    public void my_account_new_balance_is(double balance){
+        assertEquals(balance, atm.getBalance());
     }
 
     @When("I withdraw {float} from ATM")

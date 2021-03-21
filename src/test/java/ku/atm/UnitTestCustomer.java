@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UnitTestCustomer {
-
+    //test customer อย่างเดียวว่า map pin ถูกมั้บ
     Customer customer;
     int id = 1;
     int pin = 345;

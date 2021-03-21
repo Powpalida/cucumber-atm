@@ -30,7 +30,7 @@ public class ATMConsoleUI {
 			}
 			else if (state == ATM.TRANSACT) {
 				System.out.println("Balance=" + theATM.getBalance());
-				System.out.print("A=Deposit, B=Withdrawal, C=Transfer, D=Exit: ");
+				System.out.print("A=Deposit, B=Withdrawal, C=Transfer,D=Exit: ");
 				String command = in.next();
 				if (command.equalsIgnoreCase("A")) {
 					System.out.print("Amount: ");
