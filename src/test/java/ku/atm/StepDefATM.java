@@ -19,12 +19,12 @@ public class StepDefATM {
         atm = new ATM(bank);
     }
 
-    //add new customer เข้าใน bank
+
     @Given("a customer with id {int} and pin {int} exists")
     public void a_customer_with_id_and_pin_exists(int id, int pin) {
         bank.addCustomer(new Customer(id, pin));
     }
-    //ระบุ balance
+
     @Given("a customer with id {int} and pin {int} with balance {float} exists")
     public void a_customer_with_id_and_pin_with_balance_exists(int id, int pin, double balance) {
         bank.addCustomer(new Customer(id, pin, balance));
@@ -32,7 +32,7 @@ public class StepDefATM {
 
     @When("I login to ATM with id {int} and pin {int}")
     public void i_login_to_ATM_with_id_and_pin(int id, int pin) {
-        validLogin = atm.validateCustomer(id, pin);
+        validLogin = atm.validateCustomer(id, pin);     //Match between ID and Pin
     }
 
     @Then("I can login")
@@ -45,16 +45,6 @@ public class StepDefATM {
         assertFalse(validLogin);
     }
 
-    @When("I deposit {float} from ATM")
-    public void i_deposit_from_atm(double amount){
-        atm.deposit(amount);
-    }
-
-    @Then("my account balance is {float}")
-    public void my_account_new_balance_is(double balance){
-        assertEquals(balance, atm.getBalance());
-    }
-
     @When("I withdraw {float} from ATM")
     public void i_withdraw_from_atm(double amount) throws NotEnoughBalanceException {
         atm.withdraw(amount);
@@ -65,6 +55,19 @@ public class StepDefATM {
         assertThrows(NotEnoughBalanceException.class,
                 () -> atm.withdraw(amount));
     }
+
+
+    @When("I deposit {float} from ATM")
+    public void i_deposit_from_atm(double amount){
+        atm.deposit(amount);
+    }
+
+
+    @When("I lessdeposit {float} to ATM")
+    public void i_deposit_to_atm_less_than_0(double amount) {
+        atm.deposit(0);
+    }
+
     @Then("my account balance is {float}")
     public void my_account_balance_is(double balance) {
         assertEquals(balance, atm.getBalance());
@@ -78,7 +81,11 @@ public class StepDefATM {
     @Then("customer id {int} account balance is {float}")
     public void customer_id_account_balance_is(int id, double balance) {
         assertEquals(balance,
-                     bank.findCustomer(id).getAccount().getBalance());
+                bank.findCustomer(id).getAccount().getBalance());
     }
+
+
+
+
 
 }
