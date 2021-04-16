@@ -18,12 +18,12 @@ public class StepDefATM {
         bank = new Bank();
         atm = new ATM(bank);
     }
-
-
+    //add new customer เข้าใน bank
     @Given("a customer with id {int} and pin {int} exists")
     public void a_customer_with_id_and_pin_exists(int id, int pin) {
         bank.addCustomer(new Customer(id, pin));
     }
+    //ระบุ balance
 
     @Given("a customer with id {int} and pin {int} with balance {float} exists")
     public void a_customer_with_id_and_pin_with_balance_exists(int id, int pin, double balance) {
